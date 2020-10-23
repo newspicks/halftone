@@ -1,0 +1,54 @@
+.attache-file-zone {
+    width: 95%;
+    vertical-align: middle;
+    text-align: center;
+    border-width: 2px;
+    margin-bottom: 10px; 
+    color: #444444;
+    border-color: #ccc;
+    border-radius: 8px;
+/*    line-height: 100px; */
+    text-align: center;
+    padding: 0 2% 2% 2%;
+}
+
+.attache-file-zone.drop {
+    color: #222;
+    border-color: #222;
+    transform: translate3d(0, 0, 0);
+    transition: background .4s cubic-bezier(.25,.8,.25,1), 
+                box-shadow 280ms cubic-bezier(.4,0,.2,1);
+}
+
+.mat-slider {
+    width: 500px;
+    padding: 12px;
+}
+
+image-cropper {
+    height: 480px;
+    vertical-align: top;
+}
+
+img.cropped {
+    height: 480px;
+    vertical-align: top;
+}
+
+mat-card {
+    width: 500px;
+    text-align: center;
+}
+
+.loading-shade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0px;
+    right: 0;
+    background: rgba(0, 0, 0, 0.25);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}  

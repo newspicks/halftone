@@ -1,0 +1,113 @@
+<div class="container">
+  <h1>Halftoned Image Processing</h1>
+  <div>
+    <mat-grid-list cols="2" rowHeight="1:1">
+      <mat-grid-tile>
+        <mat-card>
+          <mat-card-title>
+            <h2>original image</h2>
+          </mat-card-title>
+          <mat-card-content 
+          [appDropFiles] 
+          (selectedFiles)="attacheFiles($event)"
+          class="attache-file-zone mat-elevation-z8">
+            <p>Drag Image File Here!</p>
+            <image-cropper 
+            [imageFile]="inputImage"
+            [imageChangedEvent]="imageChangedEvent"
+            [maintainAspectRatio]="true"
+            [aspectRatio]="width / height"
+            format="jpg"
+            [resizeToWidth]="width"
+            (imageCropped)="imageCropped($event)"
+            (imageLoaded)="imageLoaded()"
+            (cropperReady)="cropperReady()"
+            (loadImageFailed)="loadImageFailed()"
+            ></image-cropper>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-card>
+          <mat-card-title>
+            <h2>cropped image</h2>
+          </mat-card-title>
+          <mat-card-content>
+            <img [src]="croppedImage" class="cropped"/>
+            <div *ngIf="croppedImage">
+              <button mat-raised-button color="accent" (click)="downloadImage('cropped')">DOWNLOAD</button>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-card>
+          <mat-card-content>
+            <h2>Input / Settings</h2>
+            <!--
+              <mat-label>Input Image</mat-label>
+              <input type="file" (change)="fileChangeEvent($event)"/>
+            -->
+            <h3>Target Cropping Size</h3>
+            <mat-form-field class="example-full-width">
+              <mat-label>Width</mat-label>
+              <input matInput type="number" placeholder="1080" [(ngModel)]="width"/>
+            </mat-form-field>
+            <span></span>
+            <mat-form-field class="example-full-width">
+              <mat-label>Height</mat-label>
+              <input matInput type="number" placeholder="1080" [(ngModel)]="height"/>
+            </mat-form-field>
+            <h3>Sample size</h3>
+            <mat-slider 
+              thumbLabel
+              [displayWith]="formatLabel"
+              [(ngModel)]="sampleSize"
+              (change)="sampleSizeUpdated()"
+              min="7" max="33" step="2" tickInterval="2"
+              class="mat-slider">
+            </mat-slider>
+            <h3>Brightness</h3>
+            <mat-slider 
+              thumbLabel
+              [displayWith]="formatLabel"
+              [(ngModel)]="brightness"
+              (change)="brightnessUpdated($event)"
+              min="-100" max="100" step="5" tickInterval="5"
+              class="mat-slider">
+            </mat-slider>
+            <h3>Contrast</h3>
+            <mat-slider 
+              thumbLabel
+              [displayWith]="formatLabel"
+              [(ngModel)]="contrast"
+              (change)="contrastUpdated($event)"
+              min="-100" max="100" step="5" tickInterval="5"
+              class="mat-slider">
+            </mat-slider>
+            <button mat-raised-button color="accent" (click)="sampleSizeUpdated()">CREATE!</button>
+            <button mat-raised-button color="warn" (click)="initialize()">RESET</button>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-card>
+          <mat-card-title>
+            <h2>Halftoned Image</h2>
+          </mat-card-title>
+          <mat-card-content>
+            <div *ngIf="isProcessing" class="loading-shade">
+             <mat-spinner color="accent"></mat-spinner>
+            </div>
+            <img [src]="halftoneImage" class="cropped"/>
+            <div *ngIf="halftoneImage">
+              <button mat-raised-button color="accent" (click)="downloadImage('halftone')">DOWNLOAD</button>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>
+
+<a id="img-donwload" herf="" download></a>
