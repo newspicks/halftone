@@ -16,3 +16,7 @@ JavaScriptで網点処理風の画像を作成するプログラムです。
 -----
 * [kMUTOU](https://github.com/kMUTOU)
 
+
+デプロイ
+-----
+mainブランチに修正がマージされるとGitHub ActionsによりGitHub Pagesで公開されます。
